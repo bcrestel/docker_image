@@ -1,9 +1,10 @@
 numpy
-scipy
-scikit-learn
+#scipy
+#scikit-learn
 pandas>=1.0.0
 pandas_profiling
-torch
+#torch
+modin[ray]
 
 matplotlib
 seaborn

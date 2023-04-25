@@ -7,7 +7,7 @@ IMAGE_TAG = 1.0
 DOCKER_RUN = docker run -it --entrypoint=bash -w /home -v $(PWD):/home/
 DOCKER_IMAGE = $(IMAGE_NAME):$(IMAGE_TAG)
 DOCKERFILE_PIPTOOLS = Dockerfile_piptools
-DOCKER_IMAGE_PIPTOOLS = piptools:1.0
+DOCKER_IMAGE_PIPTOOLS = piptools:latest
 ###################
 
 #
@@ -43,7 +43,9 @@ upgrade:
 .PHONY : shell
 shell: build
 	$(info ***** Creating shell *****)
-	$(DOCKER_RUN) $(DOCKER_IMAGE)
+	$(DOCKER_RUN) -p 8265:8265 -p 5000:5000 $(DOCKER_IMAGE)
+# Note: to start Ray server, start it as: ‘ray.init(dashboard_port=8265, dashboard_host="0.0.0.0")‘
+# Then open that Ray server in your browser with “localhost:8265‘
 
 .PHONY : notebook
 notebook: build
