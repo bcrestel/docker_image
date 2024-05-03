@@ -31,6 +31,8 @@ requirements.txt: .build_piptools requirements.in
 	docker build -f $(DOCKERFILE_PIPTOOLS) -t $(DOCKER_IMAGE_PIPTOOLS) .
 	@touch .build_piptools
 
+build-piptools: .build_piptools 
+
 .PHONY : upgrade
 upgrade:
 	$(info ***** Upgrading dependencies *****)
